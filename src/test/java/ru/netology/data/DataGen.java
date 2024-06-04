@@ -1,7 +1,6 @@
 package ru.netology.data;
 
 import lombok.Value;
-
 import java.util.Random;
 
 public class DataGen {
@@ -18,8 +17,13 @@ public class DataGen {
         return new User("vasya", "qwerty123");
     }
 
-    public static String getCode() {
-        return "12345";
+    @Value
+    public static class VerificationCode {
+        String code;
+    }
+
+    public static VerificationCode getCode() {
+        return new VerificationCode ("12345");
     }
 
     public static Card getFirstCard() {

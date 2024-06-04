@@ -38,8 +38,8 @@ public class TransferTest {
         var sum = validBalance(firstCardBalance);
         var expectedFirstCard = firstCardBalance - sum;
         var expectedSecondCard = secondCardBalance + sum;
-        var transferPage = dashboardPage.selectTrancferCard(secondCard);
-        transferPage.toTransfer(String.valueOf(sum), firstCard);
+        var transferPage = dashboardPage.selectTrancferCard(firstCard);
+        transferPage.transfer(String.valueOf(sum), secondCard);
         dashboardPage.reloadDashboardPage();
         var actualFirstCard = dashboardPage.cardBalance(0);
         var actualSecondCard = dashboardPage.cardBalance(maskedCardNumber(secondCard.getCardNum()));

@@ -14,8 +14,8 @@ public class TransferPage {
         $(byText("Пополнение карты")).shouldBe(visible);
     }
 
-    public DashboardPage transfer(String transferAmount, DataGen.Card card) {
-        toTransfer(transferAmount, card);
+    public DashboardPage transfer(String sum, DataGen.Card card) {
+        toTransfer(sum, card);
         return new DashboardPage();
     }
 

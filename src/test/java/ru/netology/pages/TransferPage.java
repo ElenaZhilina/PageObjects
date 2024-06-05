@@ -19,8 +19,8 @@ public class TransferPage {
         return new DashboardPage();
     }
 
-    public void toTransfer(String transferAmount, DataGen.Card card) {
-        $("[data-test-id=amount] input").setValue(transferAmount);
+    public void toTransfer(String sum, DataGen.Card card) {
+        $("[data-test-id=amount] input").setValue(sum);
         $("[data-test-id=from] input").setValue(card.getCardNum());
         $("[data-test-id=action-transfer]").click();
     }

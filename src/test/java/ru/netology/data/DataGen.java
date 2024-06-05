@@ -35,7 +35,7 @@ public class DataGen {
     }
 
     public static String maskedCardNumber(String cardNumber) {
-        return "**** **** **** " + cardNumber.substring(12);
+        return "**** **** **** " + cardNumber.substring(15);
     }
 
     public static int validBalance(int balance) {

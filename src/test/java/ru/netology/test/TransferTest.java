@@ -35,8 +35,8 @@ public class TransferTest {
     @Test
     void successTransfer() {
         var sum = DataGen.validBalance(firstCardBalance);
-        var expectedFirstCard = firstCardBalance - sum;
-        var expectedSecondCard = secondCardBalance + sum;
+        var expectedFirstCard = firstCardBalance + sum;
+        var expectedSecondCard = secondCardBalance - sum;
         var transferPage = dashboardPage.selectTransferCard(firstCard);
         dashboardPage = transferPage.transfer(String.valueOf(sum), secondCard);
         dashboardPage.reloadDashboardPage();
@@ -46,5 +46,16 @@ public class TransferTest {
                 () -> assertEquals(expectedSecondCard, actualSecondCard));
     }
 
-
+    @Test
+    void errorIfUnSuccessTransfer() {
+        var sum = invalidBalance(firstCardBalance);
+        var transferPage = dashboardPage.selectTransferCard(secondCard);
+        transferPage.toTransfer(String.valueOf(sum), firstCard);
+        transferPage.errorMsg("Недостаточно средств на карте списания");
+        dashboardPage.reloadDashboardPage();
+        var actualFirstCard = dashboardPage.cardBalance(maskedCardNumber(firstCard.getCardNum()));
+        var actualSecondCard = dashboardPage.cardBalance(maskedCardNumber(secondCard.getCardNum()));
+        assertAll(() -> assertEquals(firstCardBalance, actualFirstCard),
+                () -> assertEquals(secondCardBalance, actualSecondCard));
+    }
 }
